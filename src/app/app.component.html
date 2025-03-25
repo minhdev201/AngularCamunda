@@ -1,0 +1,60 @@
+<header class="header">
+  <h1>Angular Modular + Lazy Loading (Standalone)</h1>
+</header>
+
+<div class="container">
+  <nav class="sidebar">
+    <ul>
+      <ng-container *ngFor="let item of menuItems$ | async">
+        <li>
+          <a *ngIf="item.path" [routerLink]="item.path" routerLinkActive="active">
+            <i *ngIf="item.icon" [class]="item.icon"></i>
+            {{ item.title | translate }} <!-- Áp dụng dịch -->
+          </a>
+          <span *ngIf="!item.path" (click)="toggleMenu(item)">
+            <i *ngIf="item.icon" [class]="item.icon"></i>
+            {{ item.title | translate }} ▼
+          </span>
+
+          <!-- Menu con -->
+          <ul *ngIf="item.children && item.open">
+            <ng-container *ngFor="let child of item.children">
+              <li>
+                <a *ngIf="child.path" [routerLink]="child.path" routerLinkActive="active">
+                  <i *ngIf="child.icon" [class]="child.icon"></i>
+                  {{ child.title | translate }}
+                </a>
+                <span *ngIf="!child.path" (click)="toggleMenu(child)">
+                  <i *ngIf="child.icon" [class]="child.icon"></i>
+                  {{ child.title | translate }} ▼
+                </span>
+
+                <!-- Menu con cấp 2 -->
+                <ul *ngIf="child.children && child.open">
+                  <ng-container *ngFor="let subChild of child.children">
+                    <li>
+                      <a *ngIf="subChild.path" [routerLink]="subChild.path" routerLinkActive="active">
+                        <i *ngIf="subChild.icon" [class]="subChild.icon"></i>
+                        {{ subChild.title | translate }}
+                      </a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+
+    <!-- Nút chuyển đổi ngôn ngữ -->
+    <div class="language-switcher">
+      <button (click)="changeLanguage('en')">🇬🇧 English</button>
+      <button (click)="changeLanguage('vi')">🇻🇳 Tiếng Việt</button>
+    </div>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

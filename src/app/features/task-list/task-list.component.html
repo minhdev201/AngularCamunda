@@ -1,0 +1,23 @@
+<!-- <div *ngIf="task">
+  <h3>{{ task.name }}</h3>
+  <p>{{ task.id }}</p>
+  <p>Form Key: {{ task.formKey }}</p>
+  <button (click)="openTaskForm(task.formKey, task.id)">Duyệt Đơn Hàng</button>
+</div> -->
+
+<div *ngIf="tasks.length > 0; else noTasks">
+  <ul>
+    <li *ngFor="let task of tasks">
+      <h3>{{ task.name }}</h3>
+      <p>ID: {{ task.id }}</p>
+      <p>Form Key: {{ task.formKey }}</p>
+      <button (click)="openTaskForm(task.formKey, task.id)">Duyệt Đơn Hàng</button>
+      <hr />
+    </li>
+  </ul>
+</div>
+
+<ng-template #noTasks>
+  <p>📭 Không có task nào</p>
+</ng-template>
+
