@@ -1,19 +1,28 @@
 import { Routes } from '@angular/router';
+import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./features/dashboard/dashboard.component').then(
-        (m) => m.DashboardComponent
-      ),
+    path: '',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/dashboard/default',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard/default',
+        loadComponent: () => import('./features/dashboard/dashboard.component').then((c) => c.DashboardComponent)
+      },
+      {
+        path: 'sample-page',
+        loadComponent: () =>
+          import('./features/reports/reports.component').then((m) => m.ReportsComponent),
+      },
+    ]
   },
-  {
-    path: 'reports',
-    loadChildren: () =>
-      import('./features/reports/reports.routes').then((m) => m.REPORTS_ROUTES),
-  },
+
   {
     path: 'setting',
     loadChildren: () =>

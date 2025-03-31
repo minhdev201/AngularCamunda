@@ -1,7 +1,6 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CamundaService } from '../../services/camunda.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { SignalRService } from '../../services/signalr.service';
 
 @Component({

@@ -1,18 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
-import { CamundaService } from '../../services/camunda.service';
+import { Component } from '@angular/core';
 import { TaskListComponent } from '../task-list/task-list.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ TaskListComponent ],
+  imports: [ TaskListComponent, TranslateModule ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  private camundaService = inject(CamundaService);
-  tasks = signal<any[]>([]);
 
-  ngOnInit() {
-    // this.camundaService.getTasks().subscribe(data => this.tasks.set(data));
-  }
 }

@@ -1,8 +1,9 @@
 {
-  "DASHBOARD": "Bảng điều khiển",
+  "Dashboard": "Bảng điều khiển",
   "REPORTS": "Báo cáo",
   "Sales": "Doanh số",
   "Monthly": "Hàng tháng",
   "setting": "Cài đặt",
-  "DUYETDONHANG": "Duyệt đơn hàng"
+  "DUYETDONHANG": "Duyệt đơn hàng",
+  "listtask": "Danh sách nhiệm vụ"
 }
