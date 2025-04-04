@@ -1,16 +1,28 @@
 <div *ngIf="tasks.length > 0; else noTasks">
-  <ul>
-    <li *ngFor="let task of tasks">
-      <h3>{{ task.name }}</h3>
-      <p>ID: {{ task.id }}</p>
-      <p>Form Key: {{ task.formKey }}</p>
-      <button (click)="openTaskForm(task.formKey, task.id)">Duyệt Đơn Hàng</button>
-      <hr />
-    </li>
-  </ul>
+  <div class="list-group">
+    <a *ngFor="let task of tasks" class="list-group-item list-group-item-action"
+      (click)="openTask(task.id, task.formKey)">
+      <div class="d-flex">
+        <!-- Biểu tượng -->
+        <div class="flex-shrink-0">
+          <div class="user-avatar bg-light-success">
+            <i class="d-flex" antIcon theme="outline" type="file-text"></i>
+          </div>
+        </div>
+
+        <!-- Nội dung task -->
+        <div class="flex-grow-1 ms-3">
+          <span class="float-end text-muted">{{ task.createTime | date: 'shortTime' }}</span>
+          <p class="text-body mb-0">
+            <b>{{ task.name }}</b>
+          </p>
+          <span class="text-muted">ID: {{ task.id }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
 </div>
 
 <ng-template #noTasks>
   <p>📭 Không có task nào</p>
 </ng-template>
-

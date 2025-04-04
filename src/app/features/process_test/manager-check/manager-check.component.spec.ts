@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonthlyComponent } from './monthly.component';
+import { ManagerCheckComponent } from './manager-check.component';
 
-describe('MonthlyComponent', () => {
-  let component: MonthlyComponent;
-  let fixture: ComponentFixture<MonthlyComponent>;
+describe('ManagerCheckComponent', () => {
+  let component: ManagerCheckComponent;
+  let fixture: ComponentFixture<ManagerCheckComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MonthlyComponent]
+      imports: [ManagerCheckComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MonthlyComponent);
+    fixture = TestBed.createComponent(ManagerCheckComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

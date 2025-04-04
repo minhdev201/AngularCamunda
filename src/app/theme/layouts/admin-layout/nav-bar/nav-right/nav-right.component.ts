@@ -1,8 +1,13 @@
 // angular import
 import { Component, inject, input, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+
+//service import
+import { TaskService } from '../../../../../services/task.service';
 
 // project import
+import { TaskListComponent } from '../../../../../features/task-list/task-list.component';
 
 // icon
 import { IconService, IconDirective } from '@ant-design/icons-angular';
@@ -31,13 +36,21 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-nav-right',
-  imports: [IconDirective, RouterModule, NgScrollbarModule, NgbNavModule, NgbDropdownModule],
+  imports: [IconDirective, RouterModule, NgScrollbarModule, NgbNavModule, NgbDropdownModule, TaskListComponent, TranslateModule],
   templateUrl: './nav-right.component.html',
   styleUrls: ['./nav-right.component.scss']
 })
 export class NavRightComponent {
   private translate = inject(TranslateService);
+  taskCount = 0;
+  private taskService = inject(TaskService);
 
+  ngOnInit() {
+    this.taskService.tasks$.subscribe(tasks => {
+      this.taskCount = tasks.length;
+    });
+  }
+  
   private iconService = inject(IconService);
 
   styleSelectorToggle = input<boolean>();
