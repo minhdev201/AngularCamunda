@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdminComponent } from '../theme/layouts/admin-layout/admin-layout.component';
 import { FORM_KEY_ROUTES } from './formkey.routes';
+import { GuestLayoutComponent } from '../theme/layouts/guest-layout/guest-layout.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,21 @@ export const routes: Routes = [
             (m) => m.DashboardComponent
           ),
       },
+    ]
+  },
+  {
+    path: '',
+    component: GuestLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        loadComponent: () => import('../features/authentication/auth-login/auth-login.component').then((c) => c.AuthLoginComponent)
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('../features/authentication/auth-register/auth-register.component').then((c) => c.AuthRegisterComponent)
+      }
     ]
   },
   { path: '**', redirectTo: 'dashboard' },
