@@ -6,10 +6,9 @@ import { FORM_KEY_ROUTES } from '../routes/formkey.routes';
   providedIn: 'root',
 })
 export class FormKeyRouterService {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   navigateToForm(formKey: string, taskId: string) {
-    console.log(formKey)
     const entry = FORM_KEY_ROUTES[formKey];
     if (entry) {
       this.router.navigate([`/${entry.route}`, taskId]);
